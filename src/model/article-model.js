@@ -1,5 +1,3 @@
-
-
 class ArticleModel{
     constructor(){
         this.title,
