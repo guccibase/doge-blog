@@ -10,6 +10,7 @@ import ForgotPassword from "./ForgotPassword"
 import UpdateProfile from "./UpdateProfile"
 import ArticlesScreen from "./screens/Articles_screen"
 import './App.css'
+import BlogScreen from "./screens/Blog-screen"
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
               <Route path="/" component={ArticlesScreen}/>
               <PrivateRoute exact path="/" component={Dashboard} />
               <PrivateRoute path="/update-profile" component={UpdateProfile} />
+              <Route path="/blog" component={BlogScreen} />
               <Route path="/signup" component={Signup} />
               <Route path="/login" component={Login} />
               <Route path="/forgot-password" component={ForgotPassword} />

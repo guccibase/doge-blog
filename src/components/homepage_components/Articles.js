@@ -1,6 +1,7 @@
 import React from 'react'
 import './Articles.css'
 import { Button, Card, Container, } from 'react-bootstrap'
+import ArticleBodySmall from '../article_components/Article_body_small'
 
 function Articles() {
     const data = {
@@ -17,25 +18,9 @@ function Articles() {
     return (
        <div>
             {art.map(a => 
-            <div>
-                    <Card className="mt-4">
-                        <Card.Body>
-                            <Card.Title>
-                                <h2>
-                                    {data.title}
-                                </h2>
-                            </Card.Title>
-                            <Card.Subtitle className="text-muted mb-2 home">
-                                {data.createAt}
-                            </Card.Subtitle>
-                            <Card.Text className="mt-4 card-text bold">
-                               {data.sub}
-                            </Card.Text>
-                        </Card.Body>
-                        <a href="/" className="btn read-more btn-lg">Read more</a>
+            <ArticleBodySmall data={data}>
 
-                    </Card>
-            </div>
+            </ArticleBodySmall>
             )}
        </div>
     )

@@ -2,3 +2,28 @@
 	align-self: start;
 	color: var(--dogeblog-color) !important;
 }
+.new-article {
+	background-color: var(--dogeblog-color) !important;
+	color: var(--dogeblog-secondaryText) !important;
+}
+
+.filter-btn {
+	color: var(--dogeblog-color) !important;
+}
+
+.tracker {
+	color: var(--dogeblog-color) !important;
+	font-size: 2rem;
+}
+
+.high {
+	font-size: 1.3rem;
+}
+
+.high {
+	font-size: 1.2rem;
+}
+
+.account {
+	color: var(--dogeblog-color) !important;
+}
