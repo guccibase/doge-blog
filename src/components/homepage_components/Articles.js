@@ -18,7 +18,7 @@ function Articles() {
     return (
        <div>
             {art.map(a => 
-            <ArticleBodySmall data={data}>
+            <ArticleBodySmall key={a} data={data}>
 
             </ArticleBodySmall>
             )}

@@ -13,7 +13,7 @@ function FilterButtons() {
         <div>
           <Row>
                 {art.map(a =>
-                  <Button className="col ml-3 mr-3 btn-light filter-btn">
+                  <Button key={a} className="col ml-3 mr-3 btn-light filter-btn">
                     {a}
                   </Button>
                 )}

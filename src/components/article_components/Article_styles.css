@@ -1,1 +1,4 @@
-
+.article-title {
+	color: var(--dogeblog-color);
+	font-size: 2rem !important;
+}
