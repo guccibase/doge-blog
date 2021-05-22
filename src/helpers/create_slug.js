@@ -1,16 +1,12 @@
-import slugify from 'slugify'
+import slugify from "slugify";
 
+export default async function createSlug(title) {
+  console.log("creating slug");
+  let slug = "";
+  const time = new Date();
+  if (title) {
+    slug = slugify(title + "-created-" + time, { lower: true, strict: true });
+  }
 
-function createSlug(title){
-    let slug = ''
-    const time = new Date();
-    if (this.title) {
-        slug = slugify(title + "-created-" + time, { lower: true, strict: true })
-    }
-
-    return slug
-
+  return slug;
 }
-
-
-export default createSlug
