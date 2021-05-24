@@ -1,24 +1,33 @@
-import React from 'react'
-import {useParams} from 'react-router-dom'
-import { Container } from 'react-bootstrap'
-import ArticleBodyFull from '../article_components/Article_body_full'
-
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { Container } from "react-bootstrap";
+import ArticleBodyFull from "../article_components/Article_body_full";
+import getArticle from "../../database/get_article";
 function BlogScreen() {
-    let {data} = useParams()
-     data = {
-        title: "‘I just became a dogecoin millionaire’: ",
-        createAt: "Thu, Apr 22 20214:02 PM",
-        sub: "This 33-year-old invested his savings in the meme cryptocurrency with inspiration from Elon Musk.Glauber Contessoto says that on April 15 at 6: 00 p.m.PDT, he became a dogecoin millionaire.Glauber Contessoto says that on April 15 at 6: 00 p.m.PDT, he became a dogecoin millionaire.",
-        markdown: "Glauber Contessoto says that on April 15 at 6:00 p.m. PDT, he became a dogecoin millionaire."
-    }
+  let { id } = useParams();
 
+  const [articleData, setArticleData] = useState({
+    title: "",
+    description: "",
+    markdown: "",
+    authorId: "",
+    likeCount: 0,
+    createdAt: "",
+  });
 
-    return (
-        <Container>
-            {/* <div>{data}</div> */}
-            <ArticleBodyFull data={data} ></ArticleBodyFull>
-        </Container>
-    )
+  useEffect(() => {
+    const fetchArticle = async () => {
+      const article = await getArticle(id);
+      setArticleData(article);
+    };
+    fetchArticle();
+  }, []);
+
+  return (
+    <Container>
+      <ArticleBodyFull data={articleData}></ArticleBodyFull>
+    </Container>
+  );
 }
 
-export default BlogScreen
+export default BlogScreen;

@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import NewArticleCancelBtn from "./New_article_cancel_btn";
 import NewArticleDescription from "./New_article_description";
 import NewArticleMarkdown from "./New_article_markdown";
 import NewArticleSubmitBtn from "./New_article_submit_btn";
 import NewArticleTitle from "./New_article_title";
+import ValidateData from "../../helpers/validate_new_article";
+import SubmitNewArticle from "../../helpers/submit_new_article";
 import { useHistory } from "react-router-dom";
-import createArticle from "../../database/create_new_article";
 import { Form } from "react-bootstrap";
 import { useAuth } from "../../contexts/AuthContext";
 import "./New_article.css";
@@ -18,40 +19,16 @@ export default function NewArticleForm() {
     description: "",
     markdown: "",
     authorId: currentUser.uid,
+    likeCount: 0,
   });
   let navigate = false;
   const history = useHistory();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await validateData();
-    console.log("validated");
-    if (navigate === true) {
-      console.log("submiting");
-      try {
-        const slug = await createArticle(articleData);
-        history.push("/blog/" + "test");
-      } catch (error) {
-        console.log(error);
-      }
-    }
+    navigate = await ValidateData(articleData);
+    await SubmitNewArticle(navigate, articleData, history);
   };
-
-  async function validateData() {
-    console.log("validating");
-    console.log(articleData.title);
-    if (
-      articleData.title.length > 5 &&
-      articleData.description.length > 20 &&
-      articleData.markdown.length > 10
-    ) {
-      console.log("articleData");
-      navigate = true;
-    } else {
-      navigate = false;
-    }
-
-    return navigate;
-  }
 
   return (
     <div class="container">
