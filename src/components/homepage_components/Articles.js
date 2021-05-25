@@ -1,29 +1,55 @@
-import React from 'react'
-import './Articles.css'
-import { Button, Card, Container, } from 'react-bootstrap'
-import ArticleBodySmall from '../article_components/Article_body_small'
+import React, { useState, useEffect } from "react";
+import "./Articles.css";
+import ArticleBodySmall from "../article_components/Article_body_small";
+import FilterButtons from "../homepage_components/Filter_buttons";
+import getArticles from "../../database/get_all_articles";
+import { Button, Row } from "react-bootstrap";
+// import getMostRecent from "../../database/get_most_recent_articles";
+// import getMostLiked from "../../database/get_most_liked_articles";
+// import getMostRead from "../../database/get_most_read_articles";
 
 function Articles() {
-    const data = {
-        title:"‘I just became a dogecoin millionaire’: ",
-        createAt:"Thu, Apr 22 20214:02 PM",
-        sub: "This 33-year-old invested his savings in the meme cryptocurrency with inspiration from Elon Musk.Glauber Contessoto says that on April 15 at 6: 00 p.m.PDT, he became a dogecoin millionaire.Glauber Contessoto says that on April 15 at 6: 00 p.m.PDT, he became a dogecoin millionaire.",
-        markdown:"Glauber Contessoto says that on April 15 at 6:00 p.m. PDT, he became a dogecoin millionaire."
-        }
+  const [articles, setArticles] = useState([]);
+  const articles1 = [];
+  useEffect(() => {
+    let fetchArticles = async () => {
+      let articlesList = await getArticles();
+      console.log(articlesList[0].data());
+      setArticles(articlesList);
+    };
+    fetchArticles();
+  }, []);
 
+  // const buttons = ["Most recent", "Most read", "Most liked"];
+  // const mostRecent = async () => setArticles(await getMostRecent());
+  // const mostLiked = async () => setArticles(await getMostLiked());
+  // const mostRead = async () => setArticles(await getMostRead());
 
-    const art = [1,2,3,4,5,6,7,8,9,10]
+  // const handleClick = [mostRecent(), mostLiked(), mostRead()];
+  // const btnLength = [0, 1, 2];
 
-
-    return (
-       <div>
-            {art.map(a => 
-            <ArticleBodySmall key={a} data={data}>
-
-            </ArticleBodySmall>
-            )}
-       </div>
-    )
+  return (
+    <>
+      {/* <Row>
+        <Button
+          key={buttons[0]}
+          onClick={mostRecent}
+          className="col ml-3 mr-3 btn-light filter-btn"
+        >
+          {buttons[0]}
+        </Button>
+      </Row> */}
+      <div>
+        {articles.map((a) => (
+          <ArticleBodySmall
+            key={a.id}
+            id={a.id}
+            data={a.data()}
+          ></ArticleBodySmall>
+        ))}
+      </div>
+    </>
+  );
 }
 
-export default Articles
+export default Articles;

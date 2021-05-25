@@ -13,6 +13,7 @@ function BlogScreen() {
     authorId: "",
     likeCount: 0,
     createdAt: "",
+    sanitizedHtml: "",
   });
 
   useEffect(() => {
@@ -20,13 +21,16 @@ function BlogScreen() {
       const article = await getArticle(id);
       setArticleData(article);
     };
+
     fetchArticle();
   }, []);
 
   return (
-    <Container>
-      <ArticleBodyFull data={articleData}></ArticleBodyFull>
-    </Container>
+    <>
+      <Container>
+        {articleData && <ArticleBodyFull data={articleData}></ArticleBodyFull>}
+      </Container>
+    </>
   );
 }
 

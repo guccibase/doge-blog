@@ -6,11 +6,9 @@ const dompurify = createDomPurify(new JSDOM().window);
 
 export default async function purifyHTML(html) {
   console.log("sanitizing html");
-  let sanitizedHTML = "";
-  if (html) {
-    sanitizedHTML = dompurify.sanitize(marked(html));
-    console.log(html);
-  }
+  let sanitizedHTML = () => {
+    return (sanitizedHTML = dompurify.sanitize(marked(html)));
+  };
 
-  return sanitizedHTML;
+  return sanitizedHTML();
 }
