@@ -3,18 +3,19 @@ import "./Articles.css";
 import ArticleBodySmall from "../article_components/Article_body_small";
 import FilterButtons from "../homepage_components/Filter_buttons";
 import getArticles from "../../database/get_all_articles";
+import getCurrentUserArticles from "../../database/get_current_user_articles";
 import { Button, Row } from "react-bootstrap";
 // import getMostRecent from "../../database/get_most_recent_articles";
 // import getMostLiked from "../../database/get_most_liked_articles";
 // import getMostRead from "../../database/get_most_read_articles";
 
-function Articles() {
+function Articles({ allArticles }) {
   const [articles, setArticles] = useState([]);
-  const articles1 = [];
   useEffect(() => {
     let fetchArticles = async () => {
-      let articlesList = await getArticles();
-      console.log(articlesList[0].data());
+      let articlesList = allArticles
+        ? await getArticles()
+        : await getCurrentUserArticles();
       setArticles(articlesList);
     };
     fetchArticles();
@@ -45,6 +46,7 @@ function Articles() {
             key={a.id}
             id={a.id}
             data={a.data()}
+            description={a.data().description}
           ></ArticleBodySmall>
         ))}
       </div>

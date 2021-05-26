@@ -1,8 +1,6 @@
-import articlesRef from "../database/collections";
+import { articlesRef } from "../database/collections";
 
 export default async (id) => {
-  console.log(";;;;;;;;;;;;");
-  console.log(id);
   const article = await articlesRef
     .doc(id)
     .get()

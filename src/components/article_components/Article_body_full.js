@@ -7,7 +7,7 @@ import "./Article_styles.css";
 function ArticleBodyFull({ data }) {
   useEffect(() => {
     document.querySelector(".article-body").innerHTML = data.sanitizedHtml;
-  });
+  }, []);
   return (
     <Container>
       <AppHeader />

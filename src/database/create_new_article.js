@@ -1,4 +1,4 @@
-import articlesRef from "./collections";
+import { articlesRef } from "./collections";
 import createSlug from "../helpers/create_slug";
 import purifyHTML from "../helpers/purify_html";
 export default async function createArticle(article) {

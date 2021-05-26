@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Row } from "react-bootstrap";
 import ArticleBodySmall from "../article_components/Article_body_small";
-import getArticles from "../../database/get_all_articles";
+import getArticles from "../../database/get_most_liked_articles";
 
 function MostLikedArticles() {
   const [articles, setArticles] = useState([]);
   useEffect(() => {
     let fetchArticles = async () => {
       let articlesList = await getArticles();
-      console.log(articlesList[0].data());
       setArticles(articlesList);
     };
     fetchArticles();
@@ -28,6 +27,7 @@ function MostLikedArticles() {
                   key={a.id}
                   id={a.id}
                   data={a.data()}
+                  description={a.data().description.substring(0, 50) + "..."}
                 ></ArticleBodySmall>
               </div>
             ))}

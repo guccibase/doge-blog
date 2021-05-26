@@ -1,15 +1,13 @@
-import React from 'react'
-import Articles from '../homepage_components/Articles'
+import React from "react";
+import Articles from "../homepage_components/Articles";
 
 function CurrentUserArticles() {
-    return (
-        <div>
-            <h4 className="mt-4">
-                My articles
-            </h4>
-            <Articles/>
-        </div>
-    )
+  return (
+    <div>
+      <h4 className="mt-4">My articles</h4>
+      <Articles allArticles={false} />
+    </div>
+  );
 }
 
-export default CurrentUserArticles
+export default CurrentUserArticles;

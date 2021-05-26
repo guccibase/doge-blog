@@ -1,25 +1,38 @@
-import React from 'react'
-import {Card,Image} from 'react-bootstrap'
+import React, { useState, useEffect } from "react";
+import { Card, Image } from "react-bootstrap";
+import { useAuth } from "../../contexts/AuthContext";
+import getUserDetails from "../../database/get_user_details";
 
 function UserDetails() {
-    return (
-        <Card className="mb-4">
-            <Card.Body>
-            <div className="text-center">
-                    <Image className="avatar lg" src="https://image.freepik.com/free-vector/cute-shiba-inu-dog-running-cartoon-icon-illustration_138676-2418.jpg" roundedCircle />
-            </div>
-                <h3 className="text-center tracker">
-                    Doge daddy
-                </h3>
-                <Card.Text className="text-center high">
-                </Card.Text>
-                <Card.Text className="text-center low">
-                    My bio.. I love doge.. doge to the moon
-                </Card.Text>
+  const { currentUser } = useAuth();
+  const [userDetails, setUserDetails] = useState({
+    username: "",
+    bio: "",
+    avatar: "",
+  });
 
-            </Card.Body>
-        </Card>
-    )
+  useEffect(() => {
+    const getUser = async () => {
+      const user = await getUserDetails(currentUser.uid);
+      if (user) {
+        setUserDetails(user);
+      }
+    };
+    getUser();
+  }, []);
+
+  return (
+    <Card className="mb-4">
+      <Card.Body>
+        <div className="text-center">
+          <Image className="avatar lg" src={userDetails.avatar} roundedCircle />
+        </div>
+        <h3 className="text-center tracker">{userDetails.username}</h3>
+        <Card.Text className="text-center high"></Card.Text>
+        <Card.Text className="text-center low">{userDetails.bio}</Card.Text>
+      </Card.Body>
+    </Card>
+  );
 }
 
-export default UserDetails
+export default UserDetails;

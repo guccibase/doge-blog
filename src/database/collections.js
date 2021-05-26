@@ -1,4 +1,4 @@
 import { db } from "../firebase";
-const articlesRef = db.collection("articles");
-
+export const articlesRef = db.collection("articles");
+export const usersRef = db.collection("users");
 export default articlesRef;

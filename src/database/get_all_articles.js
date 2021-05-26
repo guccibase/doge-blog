@@ -1,4 +1,4 @@
-import articlesRef from "../database/collections";
+import { articlesRef } from "../database/collections";
 
 export default async () => {
   let articles = [];

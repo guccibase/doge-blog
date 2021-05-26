@@ -20,7 +20,7 @@ function ArticlesScreen() {
         <MostLikedArticles />
       </div>
       <div>
-        <Articles />
+        <Articles allArticles={true} />
       </div>
     </div>
   );
