@@ -17,13 +17,17 @@ function BlogScreen() {
   });
 
   useEffect(() => {
+    let isMounted = true;
     const fetchArticle = async () => {
       const article = await getArticle(id);
       setArticleData(article);
     };
 
-    fetchArticle();
-  }, []);
+    if (isMounted) fetchArticle();
+    return () => {
+      isMounted = false;
+    };
+  }, [id]);
 
   return (
     <>

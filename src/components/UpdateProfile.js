@@ -24,48 +24,45 @@ export default function UpdateProfile() {
   });
 
   useEffect(() => {
+    let isMounted = true;
     const getUser = async () => {
       const user = await getUserDetails(currentUser.uid);
       if (user) setUserDetails(user);
     };
-    getUser();
-  });
+    if (isMounted) getUser();
 
-  function handleSubmit(e) {
+    return () => {
+      isMounted = false;
+    };
+  }, [currentUser.uid]);
+
+  async function handleSubmit(e) {
     e.preventDefault();
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match");
     }
 
-    const promises = [];
     setLoading(true);
     setError("");
 
-    if (emailRef.current.value !== currentUser.email) {
-      promises.push(updateEmail(emailRef.current.value));
-    }
-    if (passwordRef.current.value) {
-      promises.push(updatePassword(passwordRef.current.value));
-    }
-    promises.push(
-      UpdateProfileDetails(currentUser.uid, {
+    try {
+      if (emailRef.current.value !== currentUser.email) {
+        await updateEmail(emailRef.current.value);
+      }
+      if (passwordRef.current.value) {
+        await updatePassword(passwordRef.current.value);
+      }
+      await UpdateProfileDetails(currentUser.uid, {
         username: usernameRef.current.value,
         email: emailRef.current.value,
         bio: bioRef.current.value,
         avatar: avatarRef.current.value,
-      })
-    );
-
-    Promise.all(promises)
-      .then(() => {
-        history.push("/profile");
-      })
-      .catch(() => {
-        setError("Failed to update account");
-      })
-      .finally(() => {
-        setLoading(false);
       });
+      setLoading(false);
+      history.push("/profile");
+    } catch (error) {
+      setError("Failed to update account");
+    }
   }
 
   return (

@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Card } from "react-bootstrap";
-import dogePrice from "../../doge_price/doge";
+// import dogePrice from "../../doge_price/doge";
 
 function Tracker() {
-  const [tracker, setTracker] = useState({ low: 0, high: 0, last: 0 });
+  const tracker = { low: 0, high: 0, last: 0 };
+  // const [tracker, setTracker] = useState({ low: 0, high: 0, last: 0 });
 
   //   useEffect(() => {
   //     async function getDogecoinPrice() {

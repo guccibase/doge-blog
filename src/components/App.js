@@ -3,7 +3,6 @@ import Signup from "./Signup";
 import { Container } from "react-bootstrap";
 import { AuthProvider } from "../contexts/AuthContext";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Dashboard from "./Dashboard";
 import Login from "./Login";
 import ForgotPassword from "./ForgotPassword";
 import UpdateProfile from "./UpdateProfile";
@@ -12,6 +11,7 @@ import "./App.css";
 import BlogScreen from "./screens/Blog-screen";
 import Profile from "./screens/Profile";
 import NewArticleScreen from "./screens/New_article_screen";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
@@ -22,7 +22,6 @@ function App() {
       <Router>
         <AuthProvider>
           <Switch>
-            <Route path="/dashboard" component={Dashboard} />
             <Route exact path="/" component={ArticlesScreen} />
             <Route path="/update-profile" component={UpdateProfile} />
             <Route path="/profile" component={Profile} />

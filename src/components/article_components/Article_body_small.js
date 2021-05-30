@@ -11,10 +11,10 @@ function ArticleBodySmall({ id, data, description }) {
       setAuthor(user);
     };
     getAuthor();
-  }, []);
+  }, [data.authorId]);
 
   return (
-    <div>
+    <div key={id}>
       <Card className="mt-4">
         <Card.Body>
           <Card.Title>

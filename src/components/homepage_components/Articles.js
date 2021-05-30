@@ -1,25 +1,31 @@
 import React, { useState, useEffect } from "react";
 import "./Articles.css";
 import ArticleBodySmall from "../article_components/Article_body_small";
-import FilterButtons from "../homepage_components/Filter_buttons";
+// import FilterButtons from "../homepage_components/Filter_buttons";
 import getArticles from "../../database/get_all_articles";
 import getCurrentUserArticles from "../../database/get_current_user_articles";
-import { Button, Row } from "react-bootstrap";
+// import { Button, Row } from "react-bootstrap";
 // import getMostRecent from "../../database/get_most_recent_articles";
 // import getMostLiked from "../../database/get_most_liked_articles";
 // import getMostRead from "../../database/get_most_read_articles";
 
 function Articles({ allArticles }) {
   const [articles, setArticles] = useState([]);
+
   useEffect(() => {
+    let isMounted = true;
+
     let fetchArticles = async () => {
       let articlesList = allArticles
         ? await getArticles()
         : await getCurrentUserArticles();
       setArticles(articlesList);
     };
-    fetchArticles();
-  }, []);
+    if (isMounted) fetchArticles();
+    return () => {
+      return (isMounted = false);
+    };
+  }, [allArticles]);
 
   // const buttons = ["Most recent", "Most read", "Most liked"];
   // const mostRecent = async () => setArticles(await getMostRecent());

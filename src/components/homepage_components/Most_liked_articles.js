@@ -15,16 +15,13 @@ function MostLikedArticles() {
 
   return (
     <div>
-      <h1></h1>
+      <h4 className="mt-4">Most liked</h4>
       {articles.length > 2 && (
         <>
-          <h4 className="mt-4">Most liked</h4>
-
           <Row className="mb-4">
-            {articles.map((a) => (
-              <div className="col">
+            {articles.map((a, i) => (
+              <div key={a.id} className="col">
                 <ArticleBodySmall
-                  key={a.id}
                   id={a.id}
                   data={a.data()}
                   description={a.data().description.substring(0, 50) + "..."}

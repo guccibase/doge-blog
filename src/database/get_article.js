@@ -5,7 +5,6 @@ export default async (id) => {
     .doc(id)
     .get()
     .then((doc) => {
-      console.log(doc);
       return doc.data();
     })
     .catch((error) => {

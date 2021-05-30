@@ -1,8 +1,6 @@
 import { usersRef } from "./collections";
 
 export default async (id, userData) => {
-  console.log("////////////////////////////////");
-  console.log(id);
   try {
     const newUser = await usersRef.doc(id).set({ ...userData });
     console.log("adding new user");

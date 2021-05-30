@@ -12,14 +12,18 @@ function UserDetails() {
   });
 
   useEffect(() => {
+    let isMounted = true;
+
     const getUser = async () => {
       const user = await getUserDetails(currentUser.uid);
-      if (user) {
-        setUserDetails(user);
-      }
+
+      setUserDetails(user);
     };
-    getUser();
-  }, []);
+    if (isMounted) getUser();
+    return () => {
+      return (isMounted = false);
+    };
+  }, [currentUser.uid]);
 
   return (
     <Card className="mb-4">
