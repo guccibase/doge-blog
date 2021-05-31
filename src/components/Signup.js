@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Form, Button, Card, Alert } from "react-bootstrap";
+import { Form, Button, Card, Alert, Container } from "react-bootstrap";
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 import createUserProfile from "../database/create_user_profile";
@@ -46,7 +46,7 @@ export default function Signup() {
   }
 
   return (
-    <>
+    <Container className="auth-container">
       <Card>
         <Card.Body>
           <h2 className="text-center mb-4">Sign Up</h2>
@@ -92,6 +92,6 @@ export default function Signup() {
           Log In
         </Link>
       </div>
-    </>
+    </Container>
   );
 }

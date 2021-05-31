@@ -4,6 +4,7 @@ import ArticleBodySmall from "../article_components/Article_body_small";
 // import FilterButtons from "../homepage_components/Filter_buttons";
 import getArticles from "../../database/get_all_articles";
 import getCurrentUserArticles from "../../database/get_current_user_articles";
+import { useAuth } from "../../contexts/AuthContext";
 // import { Button, Row } from "react-bootstrap";
 // import getMostRecent from "../../database/get_most_recent_articles";
 // import getMostLiked from "../../database/get_most_liked_articles";
@@ -11,6 +12,7 @@ import getCurrentUserArticles from "../../database/get_current_user_articles";
 
 function Articles({ allArticles }) {
   const [articles, setArticles] = useState([]);
+  const { currentUser } = useAuth();
 
   useEffect(() => {
     let isMounted = true;
@@ -18,7 +20,7 @@ function Articles({ allArticles }) {
     let fetchArticles = async () => {
       let articlesList = allArticles
         ? await getArticles()
-        : await getCurrentUserArticles();
+        : await getCurrentUserArticles(currentUser.uid);
       setArticles(articlesList);
     };
     if (isMounted) fetchArticles();
@@ -53,6 +55,7 @@ function Articles({ allArticles }) {
             id={a.id}
             data={a.data()}
             description={a.data().description}
+            title={a.data().title}
           ></ArticleBodySmall>
         ))}
       </div>

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Card, Container } from "react-bootstrap";
 import AppHeader from "../homepage_components/App_header";
+import Tracker from "../homepage_components/Tracker";
 import "./Article_styles.css";
 
 function ArticleBodyFull({ data }) {
@@ -8,8 +9,9 @@ function ArticleBodyFull({ data }) {
     document.querySelector(".article-body").innerHTML = data.sanitizedHtml;
   }, [data.sanitizedHtml]);
   return (
-    <Container>
+    <div>
       <AppHeader />
+      <Tracker></Tracker>
       <Card className="mt-4">
         <Card.Body>
           <Card.Title>
@@ -30,7 +32,7 @@ function ArticleBodyFull({ data }) {
           <div className="article-body"></div>
         </Card.Body>
       </Card>
-    </Container>
+    </div>
   );
 }
 

@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { Form, Button, Card, Alert } from "react-bootstrap";
+import { Form, Button, Card, Alert, Container } from "react-bootstrap";
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 import UpdateProfileDetails from "../database/edit_profile";
@@ -66,7 +66,7 @@ export default function UpdateProfile() {
   }
 
   return (
-    <>
+    <Container className="auth-container">
       <Card>
         <Card.Body>
           <h2 className="text-center mb-4">Update Profile</h2>
@@ -137,6 +137,6 @@ export default function UpdateProfile() {
           Cancel
         </Link>
       </div>
-    </>
+    </Container>
   );
 }

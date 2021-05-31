@@ -1,7 +1,12 @@
-import React from 'react'
+import React from "react";
+import { useHistory } from "react-router-dom";
 
 export default function New_article_cancel_btn() {
-    return (
-            <a href="/" class="btn btn-secondary">Cancel</a>
-    )
+  const history = useHistory();
+
+  return (
+    <a onClick={() => history.goBack()} class="btn btn-secondary">
+      Cancel
+    </a>
+  );
 }

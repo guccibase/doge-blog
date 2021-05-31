@@ -30,11 +30,7 @@ function BlogScreen() {
   }, [id]);
 
   return (
-    <>
-      <Container>
-        {articleData && <ArticleBodyFull data={articleData}></ArticleBodyFull>}
-      </Container>
-    </>
+    <>{articleData && <ArticleBodyFull data={articleData}></ArticleBodyFull>}</>
   );
 }
 
