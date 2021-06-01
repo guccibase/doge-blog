@@ -1,4 +1,1 @@
-import firebase from "firebase";
-import "firebase/firestore";
-
-export default () => firebase.firestore.FieldValue.serverTimestamp();
+export default new Date();

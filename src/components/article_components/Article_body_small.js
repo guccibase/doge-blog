@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import ArticleReadMoreBtn from "./Article_read_more_btn";
 import getUserDetails from "../../database/get_user_details";
+import ReactionsComponent from "../../components/article_components/Reactions_component";
 
 function ArticleBodySmall({ id, data, title, description }) {
   const [author, setAuthor] = useState("");
+
   useEffect(() => {
     const getAuthor = async () => {
       const user = await getUserDetails(data.authorId);
@@ -26,7 +28,10 @@ function ArticleBodySmall({ id, data, title, description }) {
           </Card.Subtitle>
           <Card.Text className="mt-4 card-text bold">{description}</Card.Text>
         </Card.Body>
-        <ArticleReadMoreBtn id={id} />
+        <div className="article-body-small-bottom">
+          <ArticleReadMoreBtn id={id} />
+          <ReactionsComponent></ReactionsComponent>
+        </div>
       </Card>
     </div>
   );

@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function New_article_submit_btn() {
+export default function SubmitButton() {
   return (
     <button type="submit" class="btn btn-light">
-      Save
+      Submit
     </button>
   );
 }

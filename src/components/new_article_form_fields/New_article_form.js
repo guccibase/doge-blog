@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import NewArticleCancelBtn from "./New_article_cancel_btn";
 import NewArticleDescription from "./New_article_description";
 import NewArticleMarkdown from "./New_article_markdown";
-import NewArticleSubmitBtn from "./New_article_submit_btn";
+import SubmitButton from "../common_components/Submit_button";
 import NewArticleTitle from "./New_article_title";
 import ValidateData from "../../helpers/validate_new_article";
 import SubmitNewArticle from "../../helpers/submit_new_article";
@@ -38,7 +38,7 @@ export default function NewArticleForm() {
         <NewArticleDescription setArticleData={setArticleData} />
         <NewArticleMarkdown setArticleData={setArticleData} />
         <NewArticleCancelBtn />
-        <NewArticleSubmitBtn />
+        <SubmitButton />
       </Form>
     </div>
   );

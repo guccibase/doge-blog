@@ -1,8 +1,8 @@
 import { articlesRef } from "./collections";
 import createSlug from "../helpers/create_slug";
 import purifyHTML from "../helpers/purify_html";
+import time from "../helpers/get-timestamp";
 export default async function createArticle(article) {
-  const time = new Date();
   try {
     const slug = await createSlug(article.title, time);
     const sanitizedHtml = await purifyHTML(article.markdown);
