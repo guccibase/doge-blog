@@ -23,7 +23,9 @@ function ProfileButtons() {
         Edit profile
       </Link>
       <span className="mt-2" onClick={handleSignout}>
-        <Link className="account ml-2 mr-4 mt-2">Sign out</Link>
+        <Link to="" className="account ml-2 mr-4 mt-2">
+          Sign out
+        </Link>
       </span>
     </>
   );

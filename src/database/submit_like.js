@@ -1,4 +1,5 @@
 import { likesRef } from "../database/collections";
+import AddLikesCount from "../database/add_likes_count";
 
 export default async function submitLike(articleId, likerId) {
   const like = await likesRef
@@ -7,6 +8,8 @@ export default async function submitLike(articleId, likerId) {
     .doc(likerId)
     .set({})
     .then((doc) => {
+      AddLikesCount(articleId);
+
       console.log("liked article");
     })
     .catch((error) => {

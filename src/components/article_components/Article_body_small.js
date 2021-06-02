@@ -3,17 +3,28 @@ import { Card } from "react-bootstrap";
 import ArticleReadMoreBtn from "./Article_read_more_btn";
 import getUserDetails from "../../database/get_user_details";
 import ReactionsComponent from "../../components/article_components/Reactions_component";
-
+import getReactionCounts from "../../database/get_reaction_counts";
 function ArticleBodySmall({ id, data, title, description }) {
   const [author, setAuthor] = useState("");
+  const [reactions, setReactions] = useState({
+    likes: 0,
+    views: 0,
+    comments: 0,
+  });
 
   useEffect(() => {
     const getAuthor = async () => {
       const user = await getUserDetails(data.authorId);
       setAuthor(user);
     };
+    const getReactionCount = async () => {
+      const reactionCounts = await getReactionCounts(id);
+
+      if (reactionCounts) setReactions(reactionCounts);
+    };
     getAuthor();
-  }, [data.authorId]);
+    getReactionCount();
+  }, [data]);
 
   return (
     <div key={id}>
@@ -30,7 +41,7 @@ function ArticleBodySmall({ id, data, title, description }) {
         </Card.Body>
         <div className="article-body-small-bottom">
           <ArticleReadMoreBtn id={id} />
-          <ReactionsComponent></ReactionsComponent>
+          <ReactionsComponent reactionCounts={reactions}></ReactionsComponent>
         </div>
       </Card>
     </div>

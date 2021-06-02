@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import AppHeader from "../homepage_components/App_header";
 import Tracker from "../homepage_components/Tracker";
@@ -7,14 +7,38 @@ import "./Article_styles.css";
 import ReactionsComponent from "./Reactions_component";
 import { useAuth } from "../../contexts/AuthContext";
 import Comments from "./Comments";
-import SubmitLikes from "../../database/submit_like";
-import AddLikesCount from "../../database/add_likes_count";
+import Like_button from "./Like_button";
+import getReactionCounts from "../../database/get_reaction_counts";
 
 function ArticleBodyFull({ data, articleId }) {
   const { currentUser } = useAuth();
+  const [isAuthor, setIsAuthor] = useState(false);
+  const [currentUserId, setCurrentUserId] = useState("noid");
+  const [reactions, setReactions] = useState({
+    likes: 0,
+    views: 0,
+    comments: 0,
+  });
+
+  const getReactionCount = async () => {
+    const reactionCounts = await getReactionCounts(articleId);
+
+    if (reactionCounts) setReactions(reactionCounts);
+  };
+
+  const author = async () => {
+    if (currentUser) setCurrentUserId(currentUser.uid);
+    if (currentUser && currentUser.uid === data.authorId) {
+      setIsAuthor(true);
+    }
+  };
+
   useEffect(() => {
     document.querySelector(".article-body").innerHTML = data.sanitizedHtml;
+    author();
+    getReactionCount();
   }, [data.sanitizedHtml]);
+
   return (
     <div>
       <AppHeader />
@@ -31,17 +55,12 @@ function ArticleBodyFull({ data, articleId }) {
             <a href="/" className="btn btn-secondary ml-2 mr-2">
               All articles
             </a>
-            {currentUser && currentUser.uid === data.authorId ? (
-              <span
-                onClick={() => {
-                  SubmitLikes(articleId, currentUser.uid);
-                  AddLikesCount(articleId);
-                }}
-                className="btn btn-info"
-              >
-                Like article
-              </span>
-            ) : (
+            <Like_button
+              updateLikeCount={setReactions}
+              articleId={articleId}
+              currentUserId={currentUserId}
+            />
+            {isAuthor && (
               <a href="/" className="btn btn-info">
                 Edit
               </a>
@@ -53,14 +72,15 @@ function ArticleBodyFull({ data, articleId }) {
           <div className="article-body"></div>
         </Card.Body>
         <div className="m-2 ml-4 article-body-full-bottom">
-          <ReactionsComponent id="" />
+          <ReactionsComponent id="" reactionCounts={reactions} />
         </div>
       </Card>
       <AddCommentComponent
+        updateCommentsCount={setReactions}
         articleId={articleId}
-        currentUserId={currentUser.uid}
+        currentUserId={currentUserId}
       />
-      <Comments />
+      <Comments reactions={reactions} articleId={articleId} />
     </div>
   );
 }

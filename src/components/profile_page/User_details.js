@@ -23,7 +23,7 @@ function UserDetails() {
     return () => {
       return (isMounted = false);
     };
-  }, [currentUser.uid]);
+  }, []);
 
   return (
     <Card className="mb-4">

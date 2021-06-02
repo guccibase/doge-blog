@@ -20,7 +20,7 @@ function Articles({ allArticles }) {
     let fetchArticles = async () => {
       let articlesList = allArticles
         ? await getArticles()
-        : await getCurrentUserArticles(currentUser.uid);
+        : await getCurrentUserArticles(currentUser && currentUser.uid);
       setArticles(articlesList);
     };
     if (isMounted) fetchArticles();
