@@ -5,7 +5,7 @@ export default async () => {
 
   try {
     await articlesRef
-      .orderBy("likeCount", "asc")
+      .orderBy("likes", "asc")
       .limit(3)
       .get()
       .then((querySnapshot) => {

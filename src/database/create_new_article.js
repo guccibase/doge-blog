@@ -13,6 +13,9 @@ export default async function createArticle(article) {
         sanitizedHtml,
         createdAt: time,
         read: 0,
+        views: 0,
+        comments: 0,
+        likes: 0,
       })
       .then((docRef) => {
         console.log("Document written with ID: ", docRef.id);

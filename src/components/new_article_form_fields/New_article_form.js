@@ -19,7 +19,6 @@ export default function NewArticleForm() {
     description: "",
     markdown: "",
     authorId: currentUser.uid,
-    likeCount: 0,
   });
   let navigate = false;
   const history = useHistory();

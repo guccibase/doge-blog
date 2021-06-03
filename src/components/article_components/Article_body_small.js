@@ -17,13 +17,12 @@ function ArticleBodySmall({ id, data, title, description }) {
       const user = await getUserDetails(data.authorId);
       setAuthor(user);
     };
-    const getReactionCount = async () => {
-      const reactionCounts = await getReactionCounts(id);
-
-      if (reactionCounts) setReactions(reactionCounts);
-    };
+    setReactions({
+      likes: data.likes,
+      views: data.views,
+      comments: data.comments,
+    });
     getAuthor();
-    getReactionCount();
   }, [data]);
 
   return (

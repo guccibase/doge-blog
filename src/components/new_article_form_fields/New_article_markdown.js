@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function New_article_markdown({ setArticleData }) {
+export default function New_article_markdown({ setArticleData, formValue }) {
   return (
     <div class="form-group">
       <label for="markdown">Markdown</label>
@@ -8,6 +8,7 @@ export default function New_article_markdown({ setArticleData }) {
         required
         name="markdown"
         id="markdown"
+        defaultValue={formValue && formValue}
         cols="30"
         rows="10"
         class="form-control"
@@ -20,9 +21,7 @@ export default function New_article_markdown({ setArticleData }) {
             };
           });
         }}
-      >
-        {" "}
-      </textarea>
+      ></textarea>
     </div>
   );
 }

@@ -12,6 +12,10 @@ function BlogScreen() {
     authorId: "",
     createdAt: "",
     sanitizedHtml: "",
+    read: 0,
+    views: 0,
+    comments: 0,
+    likes: 0,
   });
 
   useEffect(() => {

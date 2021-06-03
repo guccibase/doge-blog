@@ -16,8 +16,8 @@ function MostLikedArticles() {
   return (
     <div>
       <h4 className="mt-4">Most liked</h4>
-      {articles.length > 2 && (
-        <Row className="mb-4">
+      {articles.length > 0 && (
+        <Row className="mb-4 justify-content-md-center">
           {articles.map((a, i) => (
             <Col key={a.id} className="article-small" sm="auto">
               <ArticleBodySmall

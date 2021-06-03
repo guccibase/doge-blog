@@ -36,7 +36,11 @@ function ArticleBodyFull({ data, articleId }) {
   useEffect(() => {
     document.querySelector(".article-body").innerHTML = data.sanitizedHtml;
     author();
-    getReactionCount();
+    setReactions({
+      likes: data.likes,
+      views: data.views,
+      comments: data.comments,
+    });
   }, [data.sanitizedHtml]);
 
   return (
@@ -61,7 +65,7 @@ function ArticleBodyFull({ data, articleId }) {
               currentUserId={currentUserId}
             />
             {isAuthor && (
-              <a href="/" className="btn btn-info">
+              <a href={"/edit/" + articleId} className="btn btn-info">
                 Edit
               </a>
             )}

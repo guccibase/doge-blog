@@ -11,6 +11,7 @@ import "./App.css";
 import BlogScreen from "./screens/Blog-screen";
 import Profile from "./screens/Profile";
 import NewArticleScreen from "./screens/New_article_screen";
+import EditArticleScreen from "./screens/Edit_article_screen";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
             <Route path="/profile" component={Profile} />
             <Route path="/new" component={NewArticleScreen} />
             <Route path="/blog/:id" component={BlogScreen} />
+            <Route path="/edit/:id" component={EditArticleScreen} />
             <Route path="/signup" component={Signup} />
             <Route path="/login" component={Login} />
             <Route path="/forgot-password" component={ForgotPassword} />
