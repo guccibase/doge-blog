@@ -1,4 +1,9 @@
 .home {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
+}
+
+hr {
+  background-color: var(--dogeblog-);
+  height: 100px;
 }

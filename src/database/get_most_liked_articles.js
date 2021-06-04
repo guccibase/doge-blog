@@ -5,8 +5,7 @@ export default async () => {
 
   try {
     await articlesRef
-      .orderBy("likes", "asc")
-      .limit(3)
+      .orderBy("likes", "desc")
       .get()
       .then((querySnapshot) => {
         //  articles = querySnapshot.map((a) => a.data());

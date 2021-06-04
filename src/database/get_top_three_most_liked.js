@@ -5,7 +5,8 @@ export default async () => {
 
   try {
     await articlesRef
-      .orderBy("createdAt", "desc")
+      .orderBy("likes", "desc")
+      .limit(3)
       .get()
       .then((querySnapshot) => {
         //  articles = querySnapshot.map((a) => a.data());
@@ -16,6 +17,5 @@ export default async () => {
         });
       });
   } catch (error) {}
-  console.log(articles);
   return articles;
 };

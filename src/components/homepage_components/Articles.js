@@ -5,10 +5,10 @@ import ArticleBodySmall from "../article_components/Article_body_small";
 import getArticles from "../../database/get_all_articles";
 import getCurrentUserArticles from "../../database/get_current_user_articles";
 import { useAuth } from "../../contexts/AuthContext";
-// import { Button, Row } from "react-bootstrap";
-// import getMostRecent from "../../database/get_most_recent_articles";
-// import getMostLiked from "../../database/get_most_liked_articles";
-// import getMostRead from "../../database/get_most_read_articles";
+import { Col, Row, Button } from "react-bootstrap";
+import getMostRecent from "../../database/get_most_recent_articles";
+import getMostLiked from "../../database/get_most_liked_articles";
+import getMostViewed from "../../database/get_most_viewed_articles";
 
 function Articles({ allArticles }) {
   const [articles, setArticles] = useState([]);
@@ -16,7 +16,6 @@ function Articles({ allArticles }) {
 
   useEffect(() => {
     let isMounted = true;
-
     let fetchArticles = async () => {
       let articlesList = allArticles
         ? await getArticles()
@@ -29,26 +28,46 @@ function Articles({ allArticles }) {
     };
   }, [allArticles]);
 
-  // const buttons = ["Most recent", "Most read", "Most liked"];
-  // const mostRecent = async () => setArticles(await getMostRecent());
-  // const mostLiked = async () => setArticles(await getMostLiked());
-  // const mostRead = async () => setArticles(await getMostRead());
-
-  // const handleClick = [mostRecent(), mostLiked(), mostRead()];
-  // const btnLength = [0, 1, 2];
+  const buttons = ["Most recent", "Most viewed", "Most liked"];
+  const handleFilterClick = async (filter, getArticlesFromFilter) => {
+    let articlesList = await getArticlesFromFilter();
+    setArticles(articlesList);
+  };
 
   return (
     <>
-      {/* <Row>
-        <Button
-          key={buttons[0]}
-          onClick={mostRecent}
-          className="col ml-3 mr-3 btn-light filter-btn"
-        >
-          {buttons[0]}
-        </Button>
-      </Row> */}
       <div>
+        {allArticles && (
+          <Row className="justify-content-md-center">
+            <Col className="m-1" sm="auto">
+              <Button
+                onClick={() => handleFilterClick(buttons[0], getMostRecent)}
+                className="btn-light filter-btn"
+                id={buttons[0]}
+              >
+                {buttons[0]}
+              </Button>
+            </Col>
+            <Col className="m-1" sm="auto">
+              <Button
+                onClick={() => handleFilterClick(buttons[1], getMostViewed)}
+                className="btn-light filter-btn"
+                id={buttons[1]}
+              >
+                {buttons[1]}
+              </Button>
+            </Col>
+            <Col className="m-1" sm="auto">
+              <Button
+                onClick={() => handleFilterClick(buttons[2], getMostLiked)}
+                className="btn-light filter-btn"
+                id={buttons[2]}
+              >
+                {buttons[2]}
+              </Button>
+            </Col>
+          </Row>
+        )}
         {articles.map((a) => (
           <ArticleBodySmall
             key={a.id}

@@ -1,9 +1,24 @@
 import React, { useRef, useState, useEffect } from "react";
-import { Form, Button, Card, Alert, Container } from "react-bootstrap";
+import {
+  Form,
+  Button,
+  Card,
+  Alert,
+  Container,
+  Row,
+  Image,
+  Col,
+} from "react-bootstrap";
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 import UpdateProfileDetails from "../database/edit_profile";
 import getUserDetails from "../database/get_user_details";
+import dogeOne from "./../assets/doge-one.jpg";
+import dogeTwo from "./../assets/doge-two.jpg";
+import dogeThree from "./../assets/doge-three.jpg";
+import dogeFour from "./../assets/doge-four.jpg";
+import dogeFive from "./../assets/doge-five.jpg";
+import dogeSix from "./../assets/doge-six.jpg";
 
 export default function UpdateProfile() {
   const emailRef = useRef();
@@ -11,11 +26,54 @@ export default function UpdateProfile() {
   const passwordConfirmRef = useRef();
   const usernameRef = useRef();
   const bioRef = useRef();
-  const avatarRef = useRef();
   const { currentUser, updatePassword, updateEmail } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
+  const avatars = [dogeOne, dogeTwo, dogeThree, dogeFour, dogeFive, dogeSix];
+  const [selectedAvartar, setSelectedAvatar] = useState(<></>);
+  const [avatarRef, setAvatarRef] = useState();
+  const handleSelectAvatar = (avatar) => {
+    setSelectedAvatar(
+      <Image
+        key="selected"
+        className="justify-content-md-center mt-2 mb-2"
+        src={avatar}
+        roundedCircle
+      />
+    );
+  };
+
+  const setProfileImage = (user) => {
+    switch (user.avatar) {
+      case 0:
+        return dogeOne;
+        break;
+      case 1:
+        return dogeTwo;
+
+        break;
+      case 2:
+        return dogeThree;
+
+        break;
+      case 3:
+        return dogeFour;
+
+        break;
+      case 4:
+        return dogeFive;
+
+        break;
+      case 5:
+        return dogeSix;
+
+        break;
+
+      default:
+        break;
+    }
+  };
 
   const [userDetails, setUserDetails] = useState({
     username: "",
@@ -27,7 +85,10 @@ export default function UpdateProfile() {
     let isMounted = true;
     const getUser = async () => {
       const user = await getUserDetails(currentUser.uid);
-      if (user) setUserDetails(user);
+      if (user) {
+        setUserDetails(user);
+        handleSelectAvatar(setProfileImage(user));
+      }
     };
     if (isMounted) getUser();
 
@@ -56,7 +117,7 @@ export default function UpdateProfile() {
         username: usernameRef.current.value,
         email: emailRef.current.value,
         bio: bioRef.current.value,
-        avatar: avatarRef.current.value,
+        avatar: avatarRef,
       });
       setLoading(false);
       history.push("/profile");
@@ -115,12 +176,25 @@ export default function UpdateProfile() {
               />
             </Form.Group>
             <Form.Group id="avatar">
-              <Form.Label>Avatar</Form.Label>
-              <Form.Control
-                defaultValue={userDetails.avatar}
-                type="text"
-                ref={avatarRef}
-              />
+              <Form.Label>Select your DOGE avatar</Form.Label>
+              <Container>
+                <Row className="justify-content-md-center">
+                  {avatars.map((avatar, i) => (
+                    <Col key={i} xs={6} md={4}>
+                      <Image
+                        src={avatar}
+                        onClick={() => {
+                          setAvatarRef(i);
+                          console.log(avatarRef);
+                          handleSelectAvatar(avatar);
+                        }}
+                        thumbnail
+                      />
+                    </Col>
+                  ))}
+                  {selectedAvartar}
+                </Row>
+              </Container>
             </Form.Group>
             <Button
               disabled={loading}

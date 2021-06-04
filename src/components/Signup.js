@@ -1,9 +1,24 @@
 import React, { useRef, useState } from "react";
-import { Form, Button, Card, Alert, Container } from "react-bootstrap";
+import {
+  Form,
+  Button,
+  Card,
+  Alert,
+  Container,
+  Row,
+  Col,
+  Image,
+} from "react-bootstrap";
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 import createUserProfile from "../database/create_user_profile";
 import "../components/screens/sign-up.css";
+import dogeOne from "./../assets/doge-one.jpg";
+import dogeTwo from "./../assets/doge-two.jpg";
+import dogeThree from "./../assets/doge-three.jpg";
+import dogeFour from "./../assets/doge-four.jpg";
+import dogeFive from "./../assets/doge-five.jpg";
+import dogeSix from "./../assets/doge-six.jpg";
 
 export default function Signup() {
   const emailRef = useRef();
@@ -11,12 +26,24 @@ export default function Signup() {
   const passwordConfirmRef = useRef();
   const usernameRef = useRef();
   const bioRef = useRef();
-  const avatarRef = useRef();
+  const [avatarRef, setAvatarRef] = useState();
   const { signup } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
+  const avatars = [dogeOne, dogeTwo, dogeThree, dogeFour, dogeFive, dogeSix];
+  const [selectedAvartar, setSelectedAvatar] = useState(<></>);
 
+  const handleSelectAvatar = (avatar) => {
+    setSelectedAvatar(
+      <Image
+        key="selected"
+        className="justify-content-md-center mt-2 mb-2"
+        src={avatar}
+        roundedCircle
+      />
+    );
+  };
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -35,7 +62,7 @@ export default function Signup() {
         username: usernameRef.current.value,
         email: emailRef.current.value,
         bio: bioRef.current.value,
-        avatar: avatarRef.current.value,
+        avatar: avatarRef,
       });
       history.push("/");
     } catch {
@@ -73,8 +100,25 @@ export default function Signup() {
               <Form.Control type="text" ref={bioRef} />
             </Form.Group>
             <Form.Group id="avatar">
-              <Form.Label>Avatar</Form.Label>
-              <Form.Control type="text" ref={avatarRef} />
+              <Form.Label>Select your DOGE avatar</Form.Label>
+              <Container>
+                <Row className="justify-content-md-center">
+                  {avatars.map((avatar, i) => (
+                    <Col key={i} xs={6} md={4}>
+                      <Image
+                        src={avatar}
+                        onClick={() => {
+                          setAvatarRef(i);
+                          console.log(avatarRef);
+                          handleSelectAvatar(avatar);
+                        }}
+                        thumbnail
+                      />
+                    </Col>
+                  ))}
+                  {selectedAvartar}
+                </Row>
+              </Container>
             </Form.Group>
             <Button
               disabled={loading}

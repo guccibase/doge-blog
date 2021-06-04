@@ -19,6 +19,7 @@ function ArticlesScreen() {
       <div>
         <MostLikedArticles />
       </div>
+      <hr></hr>
       <div>
         <Articles allArticles={true} />
       </div>

@@ -1,31 +1,44 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
-// import dogePrice from "../../doge_price/doge";
+import dogePrice from "../../doge_price/doge";
 
 function Tracker() {
-  const tracker = { low: 0, high: 0, last: 0 };
-  // const [tracker, setTracker] = useState({ low: 0, high: 0, last: 0 });
+  const [tracker, setTracker] = useState({
+    prices: [
+      {
+        price: "0.00000",
+        price_base: "USD",
+        exchange: "binance",
+      },
+      {
+        price: "0.00000",
+        price_base: "USD",
+        exchange: "gemini",
+      },
+    ],
+  });
 
-  //   useEffect(() => {
-  //     async function getDogecoinPrice() {
-  //       const { data } = await dogePrice();
-  //       setTracker(data.ticker);
-  //     }
-
-  //     // setInterval(() => getDogecoinPrice(), 100);
-  //   }, []);
+  useEffect(() => {
+    async function updatePrice() {
+      const { data } = await dogePrice();
+      setTracker(data);
+    }
+    async function getDogecoinPrice() {
+      const { data } = await dogePrice();
+      setTracker(data);
+    }
+    getDogecoinPrice();
+    setInterval(() => updatePrice(), 10000);
+  }, []);
 
   return (
     <Card className="mb-4">
       <Card.Body>
         <Card.Subtitle className="text-center">Live tracker</Card.Subtitle>
         <h3 className="text-center tracker">
-          ${Number.parseFloat(tracker.last).toFixed(6)}
+          ${Number.parseFloat(tracker.prices[0].price).toFixed(5)}
         </h3>
-        <Card.Text className="text-center high">
-          High: ${tracker.high}
-        </Card.Text>
-        <Card.Text className="text-center low">Low: ${tracker.low}</Card.Text>
+        <Card.Text className="text-center high">Exchange: Binance</Card.Text>
       </Card.Body>
     </Card>
   );
