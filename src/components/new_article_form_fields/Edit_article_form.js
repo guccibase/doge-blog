@@ -10,6 +10,7 @@ import getArticle from "../../database/get_article";
 import { useHistory, useParams } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import "./New_article.css";
+import CharLength from "./Char-length";
 
 export default function EditArticleForm() {
   let { id } = useParams();
@@ -47,24 +48,39 @@ export default function EditArticleForm() {
   };
 
   return (
-    <div class="container">
-      <h1 class="mb-4">Edit Article</h1>
+    <div>
+      <h1>Edit Article</h1>
       <Form onSubmit={handleSubmit}>
         <NewArticleTitle
           setArticleData={setArticleData}
           formValue={articleData.title}
         />
+        <CharLength i={articleData.title} />
+
         <NewArticleDescription
           setArticleData={setArticleData}
           formValue={articleData.description}
         />
+        <CharLength i={articleData.description} />
+
         <NewArticleMarkdown
           setArticleData={setArticleData}
           formValue={articleData.markdown}
         />
+        {/* <MDEditor
+          value={articleData.markdown}
+          onChange={(v) => {
+            setArticleData((prev) => {
+              return { ...prev, ["markdown"]: v };
+            });
+          }}
+        /> */}
+        <CharLength i={articleData.markdown} />
+
         <NewArticleCancelBtn />
         <SubmitButton />
       </Form>
+      <div style={{ padding: "50px 0 0 0" }} />
     </div>
   );
 }

@@ -140,6 +140,7 @@ export default function UpdateProfile() {
                 ref={emailRef}
                 required
                 defaultValue={currentUser.email}
+                readOnly
               />
             </Form.Group>
             <Form.Group id="password">

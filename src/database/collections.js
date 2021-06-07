@@ -5,4 +5,5 @@ export const likesRef = db.collection("likes");
 export const viewsRef = db.collection("views");
 export const commentsRef = db.collection("comments");
 export const reactionsCounterRef = db.collection("reactions counter");
+export const greentingRef = db.collection("greetings");
 export default articlesRef;

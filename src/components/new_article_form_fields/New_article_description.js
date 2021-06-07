@@ -3,7 +3,12 @@ import React from "react";
 export default function New_article_description({ setArticleData, formValue }) {
   return (
     <div class="form-group">
-      <label for="description">Description</label>
+      <label for="description">
+        <span>
+          <h4>Description</h4>
+        </span>{" "}
+        (must be 20-300 characters long)
+      </label>
       <textarea
         required
         name="description"
