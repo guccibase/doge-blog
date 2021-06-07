@@ -16,6 +16,5 @@ export default async () => {
         });
       });
   } catch (error) {}
-  console.log(articles);
   return articles;
 };

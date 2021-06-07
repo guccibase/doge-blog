@@ -3,7 +3,12 @@ import React from "react";
 export default function New_article_title({ setArticleData, formValue }) {
   return (
     <div className="form-group">
-      <label for="title">Title</label>
+      <label for="title">
+        <span>
+          <h4>Title</h4>
+        </span>{" "}
+        (must be 4-120 characters long)
+      </label>
       <input
         type="text"
         defaultValue={formValue && formValue}

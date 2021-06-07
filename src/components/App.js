@@ -13,6 +13,7 @@ import Profile from "./screens/Profile";
 import NewArticleScreen from "./screens/New_article_screen";
 import EditArticleScreen from "./screens/Edit_article_screen";
 import "bootstrap/dist/css/bootstrap.min.css";
+import ScrollToTop from "../helpers/Scroll_to_top";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       style={{ minHeight: "1000vh" }}
     >
       <Router>
+        {/* <ScrollToTop /> */}
         <AuthProvider>
           <Switch>
             <Route exact path="/" component={ArticlesScreen} />
