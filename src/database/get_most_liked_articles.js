@@ -6,6 +6,7 @@ export default async () => {
   try {
     await articlesRef
       .orderBy("likes", "desc")
+      .where("status", "==", "live")
       .get()
       .then((querySnapshot) => {
         //  articles = querySnapshot.map((a) => a.data());

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Articles.css";
 import ArticleBodySmall from "../article_components/Article_body_small";
 // import FilterButtons from "../homepage_components/Filter_buttons";
-import getArticles from "../../database/get_all_articles";
+import getArticles from "../../database/get_articles";
 import getCurrentUserArticles from "../../database/get_current_user_articles";
 import { useAuth } from "../../contexts/AuthContext";
 import { Col, Row, Button } from "react-bootstrap";
@@ -12,7 +12,7 @@ import getMostViewed from "../../database/get_most_viewed_articles";
 import Loading from "../common_components/Loading";
 
 function Articles({ allArticles }) {
-  const [articles, setArticles] = useState([]);
+  const [articles, setArticles] = useState(null);
   const { currentUser } = useAuth();
 
   useEffect(() => {
@@ -37,11 +37,11 @@ function Articles({ allArticles }) {
 
   return (
     <>
-      {!articles.length > 0 ? (
+      {articles === null ? (
         <Loading />
       ) : (
         <div>
-          {allArticles && (
+          {allArticles && articles.length > 0 && (
             <Row className="justify-content-md-center">
               <Col className="m-1" sm="auto">
                 <Button
@@ -80,6 +80,7 @@ function Articles({ allArticles }) {
               data={a.data()}
               description={a.data().description}
               title={a.data().title}
+              userProfile={!allArticles}
             ></ArticleBodySmall>
           ))}
         </div>

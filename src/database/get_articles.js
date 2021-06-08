@@ -1,13 +1,10 @@
-import { articlesRef } from "../database/collections";
+import { articlesRef } from "./collections";
 
 export default async () => {
   let articles = [];
-
   try {
     await articlesRef
-      .orderBy("createdAt", "desc")
       .where("status", "==", "live")
-
       .get()
       .then((querySnapshot) => {
         //  articles = querySnapshot.map((a) => a.data());

@@ -7,6 +7,5 @@ export default async () => {
       greeting = doc.data().greeting;
     });
   });
-  console.log(greeting);
   return greeting;
 };

@@ -6,6 +6,7 @@ export default async () => {
   try {
     await articlesRef
       .orderBy("likes", "desc")
+      .where("status", "==", "live")
       .limit(3)
       .get()
       .then((querySnapshot) => {
