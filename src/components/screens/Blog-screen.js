@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ArticleBodyFull from "../article_components/Article_body_full";
 import getArticle from "../../database/get_article";
+import { Alert } from "react-bootstrap";
 function BlogScreen() {
   let { id } = useParams();
 

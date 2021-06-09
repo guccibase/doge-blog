@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Card } from "react-bootstrap";
+import { Alert, Card } from "react-bootstrap";
 import ArticleReadMoreBtn from "./Article_read_more_btn";
 import getUserDetails from "../../database/get_user_details";
 import ReactionsComponent from "../../components/article_components/Reactions_component";
 import getReactionCounts from "../../database/get_reaction_counts";
-function ArticleBodySmall({ id, data, title, description }) {
+function ArticleBodySmall({ id, data, title, description, userProfile }) {
   const [author, setAuthor] = useState("");
   const [reactions, setReactions] = useState({
     likes: 0,
@@ -29,6 +29,9 @@ function ArticleBodySmall({ id, data, title, description }) {
     <div key={id}>
       <Card className="mt-4">
         <Card.Body>
+          {userProfile && data.status === "pending" && (
+            <Alert className="alert-info">Pending approval</Alert>
+          )}
           <Card.Title>
             <h2>{title}</h2>
           </Card.Title>

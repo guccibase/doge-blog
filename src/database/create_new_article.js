@@ -16,6 +16,7 @@ export default async function createArticle(article) {
         views: 0,
         comments: 0,
         likes: 0,
+        status: "pending",
       })
       .then((docRef) => {
         console.log("Document written with ID: ", docRef.id);
