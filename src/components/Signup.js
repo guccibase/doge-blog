@@ -28,7 +28,7 @@ export default function Signup() {
   const bioRef = useRef();
   const [avatarRef, setAvatarRef] = useState();
   const { signup } = useAuth();
-  const [error, setError] = useState("");
+  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const history = useHistory();
   const avatars = [dogeOne, dogeTwo, dogeThree, dogeFour, dogeFive, dogeSix];
@@ -49,24 +49,27 @@ export default function Signup() {
 
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match");
-    }
+    } else {
+      try {
+        setError("");
+        setLoading(true);
+        const userId = await signup(
+          emailRef.current.value,
+          passwordRef.current.value
+        );
+        if (!userId) throw error;
 
-    try {
-      setError("");
-      setLoading(true);
-      const userId = await signup(
-        emailRef.current.value,
-        passwordRef.current.value
-      );
-      await createUserProfile(userId, {
-        username: usernameRef.current.value,
-        email: emailRef.current.value,
-        bio: bioRef.current.value,
-        avatar: avatarRef,
-      });
-      history.push("/");
-    } catch {
-      setError("Failed to create an account");
+        if (userId)
+          await createUserProfile(userId, {
+            username: usernameRef.current.value,
+            email: emailRef.current.value,
+            bio: bioRef.current.value,
+            avatar: avatarRef,
+          });
+        history.push("/");
+      } catch {
+        setError("Failed to create an account");
+      }
     }
 
     setLoading(false);
@@ -84,7 +87,7 @@ export default function Signup() {
               <Form.Control type="email" ref={emailRef} required />
             </Form.Group>
             <Form.Group id="password">
-              <Form.Label>Password</Form.Label>
+              <Form.Label>Password (must be at least 6 characters)</Form.Label>
               <Form.Control type="password" ref={passwordRef} required />
             </Form.Group>
             <Form.Group id="password-confirm">

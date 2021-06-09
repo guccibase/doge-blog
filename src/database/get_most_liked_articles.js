@@ -6,12 +6,12 @@ export default async () => {
   try {
     await articlesRef
       .orderBy("likes", "desc")
-      .where("status", "==", "live")
+      .limit(50)
       .get()
       .then((querySnapshot) => {
         //  articles = querySnapshot.map((a) => a.data());
         querySnapshot.forEach((doc) => {
-          articles.push(doc);
+          if (doc.data().status === "live") articles.push(doc);
           // doc.data() is never undefined for query doc snapshots
           // console.log(doc.id, " => ", doc.data());
         });

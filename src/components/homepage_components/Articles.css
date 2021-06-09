@@ -28,3 +28,7 @@
 .account {
   color: var(--dogeblog-color) !important;
 }
+
+.no-results {
+  margin-top: 50px !important;
+}

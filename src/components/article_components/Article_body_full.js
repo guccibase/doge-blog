@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card } from "react-bootstrap";
+import { Card, Alert } from "react-bootstrap";
 import AppHeader from "../homepage_components/App_header";
 import Tracker from "../homepage_components/Tracker";
 import AddCommentComponent from "./Add_comment_component";
@@ -8,7 +8,6 @@ import ReactionsComponent from "./Reactions_component";
 import { useAuth } from "../../contexts/AuthContext";
 import Comments from "./Comments";
 import Like_button from "./Like_button";
-import getReactionCounts from "../../database/get_reaction_counts";
 import Loading from "../common_components/Loading";
 
 function ArticleBodyFull({ data, articleId }) {
@@ -56,6 +55,12 @@ function ArticleBodyFull({ data, articleId }) {
           <Loading />
         ) : (
           <Card.Body>
+            {data.status === "pending" && (
+              <Alert className="text-center alert-info">
+                Your article has been submitted but it is pending approval. It
+                will go live for all readers once it is appoved
+              </Alert>
+            )}
             <Card.Title>
               <h2>{data.title}</h2>
             </Card.Title>

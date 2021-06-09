@@ -5,6 +5,7 @@ export default async () => {
   try {
     await articlesRef
       .where("status", "==", "live")
+      .limit(50)
       .get()
       .then((querySnapshot) => {
         //  articles = querySnapshot.map((a) => a.data());
