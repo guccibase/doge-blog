@@ -5,11 +5,15 @@ import Articles from "../homepage_components/Articles";
 import MostLikedArticles from "../homepage_components/Most_liked_articles";
 import Tracker from "../homepage_components/Tracker";
 import AppHeader from "../homepage_components/App_header";
+import Headline from "../homepage_components/Headline";
+import LatestArticle from "../homepage_components/latest_article";
+import TopArticles from "../homepage_components/Top-articles";
 
 function ArticlesScreen() {
   return (
     <div>
       <AppHeader />
+      <Headline />
       <div>
         <Tracker />
       </div>
@@ -17,9 +21,9 @@ function ArticlesScreen() {
         <NewArticleBtn />
       </div>
       <div>
-        <MostLikedArticles />
+        <TopArticles />
       </div>
-      <hr></hr>
+      {/* <hr></hr> */}
       <div>
         <Articles allArticles={true} />
       </div>

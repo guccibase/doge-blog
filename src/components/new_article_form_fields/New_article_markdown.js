@@ -8,7 +8,7 @@ export default function New_article_markdown({ setArticleData, formValue }) {
         <span>
           <h4>Markdown</h4>
         </span>{" "}
-        (must be 50-10,000 characters long)
+        (must be 20-10,000 words long)
       </label>
       <MDEditor
         value={formValue}

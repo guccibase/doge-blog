@@ -7,20 +7,22 @@ import getGreeting from "../../database/get_greeting";
 
 function AppTitle() {
   const history = useHistory();
-  const [greeting, setGreeting] = useState("");
-  useEffect(() => {
-    const fetctGreeting = async () => {
-      const text = await getGreeting();
-      setGreeting(text);
-    };
-    fetctGreeting();
-  });
+  // const [greeting, setGreeting] = useState("");
+  // useEffect(() => {
+  //   const fetctGreeting = async () => {
+  //     const text = await getGreeting();
+  //     setGreeting(text);
+  //   };
+  //   fetctGreeting();
+  // });
   return (
     <Navbar>
       <div className="mb-4" onClick={() => history.push("/")}>
         <h1 className="app-title">
           <Image className="rounded-circle" src={doge}></Image> blog{" "}
-          <Navbar.Text className="greeting">{greeting}</Navbar.Text>
+          <Navbar.Text className="greeting">
+            {"where doge ideas meet"}
+          </Navbar.Text>
         </h1>
       </div>
     </Navbar>

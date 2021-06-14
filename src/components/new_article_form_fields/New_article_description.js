@@ -7,7 +7,7 @@ export default function New_article_description({ setArticleData, formValue }) {
         <span>
           <h4>Description</h4>
         </span>{" "}
-        (must be 20-300 characters long)
+        (must be 10-200 words long)
       </label>
       <textarea
         required

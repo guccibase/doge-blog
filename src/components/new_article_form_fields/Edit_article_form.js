@@ -10,7 +10,7 @@ import getArticle from "../../database/get_article";
 import { useHistory, useParams } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import "./New_article.css";
-import CharLength from "./Char-length";
+import WordLength from "./Word_length";
 
 export default function EditArticleForm() {
   let { id } = useParams();
@@ -55,13 +55,13 @@ export default function EditArticleForm() {
           setArticleData={setArticleData}
           formValue={articleData.title}
         />
-        <CharLength i={articleData.title} />
+        <WordLength i={articleData.title} />
 
         <NewArticleDescription
           setArticleData={setArticleData}
           formValue={articleData.description}
         />
-        <CharLength i={articleData.description} />
+        <WordLength i={articleData.description} />
 
         <NewArticleMarkdown
           setArticleData={setArticleData}
@@ -75,7 +75,7 @@ export default function EditArticleForm() {
             });
           }}
         /> */}
-        <CharLength i={articleData.markdown} />
+        <WordLength i={articleData.markdown} />
 
         <NewArticleCancelBtn />
         <SubmitButton />

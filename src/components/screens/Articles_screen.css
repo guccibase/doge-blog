@@ -3,7 +3,14 @@
   padding: 0;
 }
 
-hr {
-  background-color: var(--dogeblog-);
-  height: 100px;
+/* .top-articles {
+  display: flex;
 }
+
+.latest-article {
+  flex: 0.4;
+}
+
+.most-liked-article {
+  flex: 0.6;
+} */

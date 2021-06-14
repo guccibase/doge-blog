@@ -10,8 +10,7 @@ import { useHistory } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import { useAuth } from "../../contexts/AuthContext";
 import "./New_article.css";
-
-import CharLength from "./Char-length";
+import WordLength from "./Word_length";
 
 export default function NewArticleForm() {
   const { currentUser } = useAuth();
@@ -36,11 +35,11 @@ export default function NewArticleForm() {
       <h1 class="mb-4">New Article</h1>
       <Form onSubmit={handleSubmit}>
         <NewArticleTitle setArticleData={setArticleData} />
-        <CharLength i={articleData.title} />
+        <WordLength i={articleData.title} />
         <NewArticleDescription setArticleData={setArticleData} />
-        <CharLength i={articleData.description} />
+        <WordLength i={articleData.description} />
         <NewArticleMarkdown setArticleData={setArticleData} />
-        <CharLength i={articleData.markdown} />
+        <WordLength i={articleData.markdown} />
         <NewArticleCancelBtn />
         <SubmitButton />
       </Form>

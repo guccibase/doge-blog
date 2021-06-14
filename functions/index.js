@@ -14,7 +14,6 @@ exports.onReactionOnArticles = functions.firestore
       .doc(articleId)
       .get();
     if (articleDoc.exists) {
-      console.log(data);
       articleDoc.ref.update({
         likes: data.likes,
         views: data.views,
@@ -34,5 +33,19 @@ exports.onCreateNewArticle = functions.firestore
       .collection("reactions counter")
       .doc(articleId)
       .set(data);
-    console.log(data);
+  });
+
+exports.onUpdateArticle = functions.firestore
+  .document("/articles/{articleId}")
+  .onUpdate(async (snapshot, context) => {
+    const articleId = context.params.articleId;
+    const adata = snapshot.after.data();
+    const bdata = snapshot.before.data();
+    if (bdata.status === "pending" && adata.status === "live") {
+      await admin
+        .firestore()
+        .collection("latest article")
+        .doc("article id")
+        .set({ latest: articleId });
+    }
   });

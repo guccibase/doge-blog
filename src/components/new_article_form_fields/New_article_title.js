@@ -7,7 +7,7 @@ export default function New_article_title({ setArticleData, formValue }) {
         <span>
           <h4>Title</h4>
         </span>{" "}
-        (must be 4-120 characters long)
+        (must be 1-50 words long)
       </label>
       <input
         type="text"

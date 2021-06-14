@@ -4,7 +4,7 @@ import ArticleBodySmall from "../article_components/Article_body_small";
 import getArticles from "../../database/get_articles";
 import getCurrentUserArticles from "../../database/get_current_user_articles";
 import { useAuth } from "../../contexts/AuthContext";
-import { Col, Row, Button, Card } from "react-bootstrap";
+import { Col, Row, Button, Card, Nav } from "react-bootstrap";
 import getMostRecent from "../../database/get_most_recent_articles";
 import getMostLiked from "../../database/get_most_liked_articles";
 import getMostViewed from "../../database/get_most_viewed_articles";
@@ -39,35 +39,44 @@ function Articles({ allArticles }) {
     <>
       <div>
         {allArticles && (
-          <Row className="justify-content-md-center">
-            <Col className="m-1" sm="auto">
-              <Button
+          <Nav justify variant="tabs" defaultActiveKey="/">
+            <Nav.Item>
+              <Nav.Link
+                onClick={() => handleFilterClick(getArticles)}
+                className="navlink"
+                eventKey="link-0"
+              >
+                Random articles
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link
+                eventKey="link-1"
                 onClick={() => handleFilterClick(getMostRecent)}
-                className="btn-light filter-btn"
-                id={buttons[0]}
+                className="navlink"
               >
-                {buttons[0]}
-              </Button>
-            </Col>
-            <Col className="m-1" sm="auto">
-              <Button
-                onClick={() => handleFilterClick(getMostViewed)}
-                className="btn-light filter-btn"
-                id={buttons[1]}
-              >
-                {buttons[1]}
-              </Button>
-            </Col>
-            <Col className="m-1" sm="auto">
-              <Button
+                Most recent
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link
+                eventKey="link-2"
                 onClick={() => handleFilterClick(getMostLiked)}
-                className="btn-light filter-btn"
-                id={buttons[2]}
+                className="navlink"
               >
-                {buttons[2]}
-              </Button>
-            </Col>
-          </Row>
+                Most liked
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link
+                eventKey="link-3"
+                onClick={() => handleFilterClick(getMostViewed)}
+                className="navlink"
+              >
+                Most viewed
+              </Nav.Link>
+            </Nav.Item>
+          </Nav>
         )}
 
         {articles === null ? (

@@ -1,5 +1,6 @@
 import { db } from "../firebase";
 export const articlesRef = db.collection("articles");
+export const latestArticleRef = db.collection("latest article");
 export const usersRef = db.collection("users");
 export const likesRef = db.collection("likes");
 export const viewsRef = db.collection("views");

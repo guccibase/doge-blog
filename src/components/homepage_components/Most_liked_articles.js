@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
-import ArticleBodySmall from "../article_components/Article_body_small";
+import { Col, Row } from "react-bootstrap";
 import getArticles from "../../database/get_top_three_most_liked";
+import ArticleBodySmaller from "../article_components/Article_body_smaller";
 
 function MostLikedArticles() {
   const [articles, setArticles] = useState([]);
@@ -14,19 +14,18 @@ function MostLikedArticles() {
   }, []);
 
   return (
-    <div>
+    <div className="most-liked-article">
       {articles.length > 0 && (
         <>
-          <h4 className="mt-4">Most liked</h4>
-          <Row className="mb-4 justify-content-md-center">
+          <h5>Most liked articles</h5>
+          <Row className="mb-4">
             {articles.map((a, i) => (
-              <Col key={a.id} className="article-small" sm="auto">
-                <ArticleBodySmall
+              <Col key={a.id}>
+                <ArticleBodySmaller
                   id={a.id}
                   data={a.data()}
-                  description={a.data().description.substring(0, 50) + "..."}
-                  title={a.data().title.substring(0, 20) + "..."}
-                ></ArticleBodySmall>
+                  title={a.data().title.substring(0, 60) + "..."}
+                ></ArticleBodySmaller>
               </Col>
             ))}
           </Row>

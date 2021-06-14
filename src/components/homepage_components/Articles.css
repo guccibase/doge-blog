@@ -32,3 +32,22 @@
 .no-results {
   margin-top: 50px !important;
 }
+
+.navlink {
+  color: var(--dogeblog-color) !important;
+}
+
+.most-liked-article {
+  border-left: 1px solid var(--dogeblog-color);
+  padding-left: 30px;
+}
+
+@media Screen and (max-width: 540px) {
+  .most-liked-article {
+    border: none;
+    padding-left: 0px;
+  }
+  .article-body-smaller {
+    min-width: 350px;
+  }
+}
