@@ -9,10 +9,14 @@ import { useAuth } from "../../contexts/AuthContext";
 import Comments from "./Comments";
 import Like_button from "./Like_button";
 import Loading from "../common_components/Loading";
+import ArticleCreatedTime from "./Article_created_time";
+import getUserDetails from "../../database/get_user_details";
 
 function ArticleBodyFull({ data, articleId }) {
   const { currentUser } = useAuth();
   const [isAuthor, setIsAuthor] = useState(false);
+  const [author, setAuthor] = useState("");
+
   const [currentUserId, setCurrentUserId] = useState("noid");
   const [reactions, setReactions] = useState({
     likes: 0,
@@ -20,13 +24,7 @@ function ArticleBodyFull({ data, articleId }) {
     comments: 0,
   });
 
-  // const getReactionCount = async () => {
-  //   const reactionCounts = await getReactionCounts(articleId);
-
-  //   if (reactionCounts) setReactions(reactionCounts);
-  // };
-
-  const author = async () => {
+  const verifyIfAuthor = async () => {
     if (currentUser) setCurrentUserId(currentUser.uid);
     if (currentUser && currentUser.uid === data.authorId) {
       setIsAuthor(true);
@@ -34,10 +32,16 @@ function ArticleBodyFull({ data, articleId }) {
   };
 
   useEffect(() => {
+    const getAuthor = async () => {
+      const user = await getUserDetails(data.authorId);
+      setAuthor(user);
+    };
+
+    verifyIfAuthor();
     data.sanitizedHtml
       ? (document.querySelector(".article-body").innerHTML = data.sanitizedHtml)
       : console.log("loading...");
-    author();
+    data.authorId && getAuthor();
     setReactions({
       likes: data.likes,
       views: data.views,
@@ -64,9 +68,8 @@ function ArticleBodyFull({ data, articleId }) {
             <Card.Title>
               <h2>{data.title}</h2>
             </Card.Title>
-            <Card.Subtitle className="text-muted mb-2 home">
-              {new Date(data.createdAt.seconds * 1000).toLocaleString()}
-            </Card.Subtitle>
+            <Card.Text className="text-muted">by {author.username}</Card.Text>
+            <ArticleCreatedTime createdAt={data.createdAt} />
             <div>
               <a href="/" className="btn btn-secondary ml-2 mr-2">
                 All articles

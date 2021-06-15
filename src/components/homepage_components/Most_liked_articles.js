@@ -17,7 +17,7 @@ function MostLikedArticles() {
     <div className="most-liked-article">
       {articles.length > 0 && (
         <>
-          <h5>Most liked articles</h5>
+          <h8>MOST LIKED ARTICLES</h8>
           <Row className="mb-4">
             {articles.map((a, i) => (
               <Col key={a.id}>

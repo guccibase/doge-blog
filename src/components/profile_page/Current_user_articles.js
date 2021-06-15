@@ -4,7 +4,8 @@ import Articles from "../homepage_components/Articles";
 function CurrentUserArticles() {
   return (
     <div>
-      <h4 className="mt-4">My articles</h4>
+      <hr></hr>
+      <h8 className="mt-8">MY ARTICLES</h8>
       <Articles allArticles={false} />
     </div>
   );

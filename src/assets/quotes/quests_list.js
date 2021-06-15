@@ -13,8 +13,10 @@ export default [
   "“#Doge is Bitcoin’s younger brother… they have the same potential… it’s still early.” ― Jake Paul",
   "“Dogecoin is for the people.” ― Eric Berman",
   "“Rollin’ out to the MOON #Dogecoin.” ― Guy Fieri",
-  "A blog for the latest news, ideas, updates, tips and tricks on the Dogecoin",
+  "A blog for the latest news, ideas, stories, updates, tips and tricks on the Dogecoin",
   "Learn more about the Dogecoin",
   "Reading and writing about the Dogecoin at your fingertips",
   "Join dogeblog let's take Dogecoin to the MOON",
+  "SHARE YOUR DOGE STORY",
+  "How did you find out about the Dogecoin?",
 ];

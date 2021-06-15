@@ -14,7 +14,7 @@ function LatestArticle() {
 
   return (
     <div className="latest-article">
-      <h5>Latest article</h5>
+      <h8>LATEST ARTICLE</h8>
       {a.id && (
         <ArticleBodySmall
           id={a.id}

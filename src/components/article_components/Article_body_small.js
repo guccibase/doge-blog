@@ -4,6 +4,7 @@ import ArticleReadMoreBtn from "./Article_read_more_btn";
 import getUserDetails from "../../database/get_user_details";
 import ReactionsComponent from "../../components/article_components/Reactions_component";
 import getReactionCounts from "../../database/get_reaction_counts";
+import ArticleCreatedTime from "./Article_created_time";
 function ArticleBodySmall({ id, data, title, description, userProfile }) {
   const [author, setAuthor] = useState("");
   const [reactions, setReactions] = useState({
@@ -36,9 +37,7 @@ function ArticleBodySmall({ id, data, title, description, userProfile }) {
             <h2>{title}</h2>
           </Card.Title>
           <Card.Text className="text-muted">by {author.username}</Card.Text>
-          <Card.Subtitle className="text-muted mb-2 home">
-            {new Date(data.createdAt.seconds * 1000).toLocaleString()}
-          </Card.Subtitle>
+          <ArticleCreatedTime createdAt={data.createdAt} />
           <Card.Text className="mt-4 card-text bold">{description}</Card.Text>
         </Card.Body>
         <div className="article-body-small-bottom">

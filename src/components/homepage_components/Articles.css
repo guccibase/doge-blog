@@ -1,6 +1,6 @@
 .read-more {
   align-self: start;
-  color: var(--dogeblog-color) !important;
+  color: #0c5460 !important;
 }
 .new-article {
   background-color: var(--dogeblog-color) !important;
@@ -8,8 +8,8 @@
 }
 
 .filter-btn {
-  color: var(--dogeblog-color) !important;
-  color: var(--dogeblog-secondaryText) !important;
+  /* color: var(--dogeblog-color) !important; */
+  /* color: var(--dogeblog-secondaryText) !important; */
 }
 
 .tracker {
@@ -26,7 +26,8 @@
 }
 
 .account {
-  color: var(--dogeblog-color) !important;
+  /* color: var(--dogeblog-color) !important; */
+  color: black !important;
 }
 
 .no-results {
@@ -34,7 +35,7 @@
 }
 
 .navlink {
-  color: var(--dogeblog-color) !important;
+  color: rgb(116, 97, 97) !important;
 }
 
 .most-liked-article {

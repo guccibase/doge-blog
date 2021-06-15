@@ -3,6 +3,7 @@ import { Card } from "react-bootstrap";
 import ArticleReadMoreBtn from "./Article_read_more_btn";
 import getUserDetails from "../../database/get_user_details";
 import ReactionsComponent from "../../components/article_components/Reactions_component";
+import ArticleCreatedTime from "./Article_created_time";
 function ArticleBodySmaller({ id, data, title }) {
   const [author, setAuthor] = useState("");
   const [reactions, setReactions] = useState({
@@ -32,9 +33,7 @@ function ArticleBodySmaller({ id, data, title }) {
             <h6>{title}</h6>
           </Card.Title>
           <Card.Text className="text-muted">by {author.username}</Card.Text>
-          <Card.Subtitle className="text-muted home">
-            {new Date(data.createdAt.seconds * 1000).toLocaleString()}
-          </Card.Subtitle>
+          <ArticleCreatedTime createdAt={data.createdAt} />
         </Card.Body>
         <div className="article-body-small-bottom">
           <ArticleReadMoreBtn id={id} />
