@@ -88,7 +88,9 @@ function ArticleBodyFull({ data, articleId }) {
             <Card.Text className="mt-4 card-text bold">
               {data.description}
             </Card.Text>
-            <div className="article-body"></div>
+            <div className="article-body">
+            </div>
+       
           </Card.Body>
         )}
 

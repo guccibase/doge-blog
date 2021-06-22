@@ -3,7 +3,6 @@ import { Alert, Card } from "react-bootstrap";
 import ArticleReadMoreBtn from "./Article_read_more_btn";
 import getUserDetails from "../../database/get_user_details";
 import ReactionsComponent from "../../components/article_components/Reactions_component";
-import getReactionCounts from "../../database/get_reaction_counts";
 import ArticleCreatedTime from "./Article_created_time";
 function ArticleBodySmall({ id, data, title, description, userProfile }) {
   const [author, setAuthor] = useState("");
