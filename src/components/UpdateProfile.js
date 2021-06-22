@@ -108,9 +108,6 @@ export default function UpdateProfile() {
         setError("");
 
         try {
-            if (emailRef.current.value !== currentUser.email) {
-                await updateEmail(emailRef.current.value);
-            }
             if (passwordRef.current.value) {
                 await updatePassword(passwordRef.current.value);
             }
@@ -133,7 +130,6 @@ export default function UpdateProfile() {
 
             await UpdateProfileDetails(currentUser.uid, {
                 username: usernameRef.current.value,
-                email: emailRef.current.value,
                 bio: bioRef.current.value,
                 avatar: avatarRef
             });
@@ -141,6 +137,8 @@ export default function UpdateProfile() {
             history.push("/profile");
         } catch (error) {
             setError("Failed to update account");
+            setLoading(false);
+            console.log(error);
         }
     }
 
