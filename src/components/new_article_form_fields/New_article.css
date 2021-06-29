@@ -1,9 +1,8 @@
-.btn{
+.btn {
     margin-right: 10px;
 }
 
 .btn-light {
-    background-color: var(--dogeblog-color)!important;
+    background-color: var(--dogeblog-color) !important;
     border-color: var(--dogeblog-color) !important;
 }
-
