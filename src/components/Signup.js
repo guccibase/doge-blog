@@ -13,12 +13,22 @@ import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 import createUserProfile from "../database/create_user_profile";
 import "../components/screens/sign-up.css";
-import dogeOne from "./../assets/doge-one.jpg";
-import dogeTwo from "./../assets/doge-two.jpg";
-import dogeThree from "./../assets/doge-three.jpg";
-import dogeFour from "./../assets/doge-four.jpg";
-import dogeFive from "./../assets/doge-five.jpg";
-import dogeSix from "./../assets/doge-six.jpg";
+import mm1 from "./../assets/mm1.jpg";
+import mm2 from "./../assets/mm2.png";
+import mm3 from "./../assets/mm3.png";
+import mm4 from "./../assets/mm4.png";
+import mm5 from "./../assets/mm5.png";
+import mm6 from "./../assets/mm6.png";
+import mm7 from "./../assets/mm7.png";
+import mm8 from "./../assets/mm8.jpg";
+import mm9 from "./../assets/mm9.jpg";
+import mm10 from "./../assets/mm10.jpg";
+import mm11 from "./../assets/mm11.jpg";
+import lambo1 from "./../assets/urus.png";
+import lambo2 from "./../assets/gallardo.png";
+import yatch from "./../assets/yatch.png";
+import bling1 from "./../assets/diamond.png";
+import bling2 from "./../assets/gold.png";
 import verifyUsername from "../database/verify_username";
 export default function Signup() {
     const emailRef = useRef();
@@ -31,7 +41,24 @@ export default function Signup() {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const history = useHistory();
-    const avatars = [dogeOne, dogeTwo, dogeThree, dogeFour, dogeFive, dogeSix];
+    const avatars = [
+        mm1,
+        mm2,
+        mm3,
+        mm4,
+        mm5,
+        mm6,
+        mm7,
+        mm8,
+        mm9,
+        mm10,
+        mm11,
+        bling1,
+        bling2,
+        yatch,
+        lambo1,
+        lambo2
+    ];
     const [selectedAvartar, setSelectedAvatar] = useState(<></>);
 
     const handleSelectAvatar = (avatar) => {

@@ -13,12 +13,22 @@ import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 import UpdateProfileDetails from "../database/edit_profile";
 import getUserDetails from "../database/get_user_details";
-import dogeOne from "./../assets/doge-one.jpg";
-import dogeTwo from "./../assets/doge-two.jpg";
-import dogeThree from "./../assets/doge-three.jpg";
-import dogeFour from "./../assets/doge-four.jpg";
-import dogeFive from "./../assets/doge-five.jpg";
-import dogeSix from "./../assets/doge-six.jpg";
+import mm1 from "./../assets/mm1.jpg";
+import mm2 from "./../assets/mm2.png";
+import mm3 from "./../assets/mm3.png";
+import mm4 from "./../assets/mm4.png";
+import mm5 from "./../assets/mm5.png";
+import mm6 from "./../assets/mm6.png";
+import mm7 from "./../assets/mm7.png";
+import mm8 from "./../assets/mm8.jpg";
+import mm9 from "./../assets/mm9.jpg";
+import mm10 from "./../assets/mm10.jpg";
+import mm11 from "./../assets/mm11.jpg";
+import lambo1 from "./../assets/urus.png";
+import lambo2 from "./../assets/gallardo.png";
+import yatch from "./../assets/yatch.png";
+import bling1 from "./../assets/diamond.png";
+import bling2 from "./../assets/gold.png";
 import verifyUsername from "../database/verify_username";
 
 export default function UpdateProfile() {
@@ -31,7 +41,24 @@ export default function UpdateProfile() {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const history = useHistory();
-    const avatars = [dogeOne, dogeTwo, dogeThree, dogeFour, dogeFive, dogeSix];
+    const avatars = [
+        mm1,
+        mm2,
+        mm3,
+        mm4,
+        mm5,
+        mm6,
+        mm7,
+        mm8,
+        mm9,
+        mm10,
+        mm11,
+        bling1,
+        bling2,
+        yatch,
+        lambo1,
+        lambo2
+    ];
     const [selectedAvartar, setSelectedAvatar] = useState(<></>);
     const [avatarRef, setAvatarRef] = useState(0);
     const [userDetails, setUserDetails] = useState({
@@ -53,29 +80,37 @@ export default function UpdateProfile() {
     const setProfileImage = (user) => {
         switch (user.avatar) {
             case 0:
-                return dogeOne;
-                break;
+                return mm1;
             case 1:
-                return dogeTwo;
-
-                break;
+                return mm2;
             case 2:
-                return dogeThree;
-
-                break;
+                return mm3;
             case 3:
-                return dogeFour;
-
-                break;
+                return mm4;
             case 4:
-                return dogeFive;
-
-                break;
+                return mm5;
             case 5:
-                return dogeSix;
-
-                break;
-
+                return mm6;
+            case 6:
+                return mm7;
+            case 7:
+                return mm8;
+            case 8:
+                return mm9;
+            case 9:
+                return mm10;
+            case 10:
+                return mm11;
+            case 11:
+                return bling1;
+            case 12:
+                return bling2;
+            case 13:
+                return yatch;
+            case 14:
+                return lambo1;
+            case 15:
+                return lambo2;
             default:
                 break;
         }
@@ -193,7 +228,7 @@ export default function UpdateProfile() {
                             />
                         </Form.Group>
                         <Form.Group id="avatar">
-                            <Form.Label>Select your DOGE avatar</Form.Label>
+                            <Form.Label>Select your Lion avatar</Form.Label>
                             <Container>
                                 <Row className="justify-content-md-center">
                                     {avatars.map((avatar, i) => (
